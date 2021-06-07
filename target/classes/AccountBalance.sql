@@ -1,0 +1,9 @@
+CREATE TABLE AccountBalance
+(
+    ACCOUNTID     int         NOT NULL AUTO_INCREMENT,
+    ACCOUNTNUMBER DECIMAL(20) not null,
+    BALANCE       DECIMAL(20),
+    PRIMARY KEY (ACCOUNTID)
+);
+CREATE UNIQUE index AccountBalance_ACCOUNTNUMBER_UINDEX
+    on AccountBalance (ACCOUNTNUMBER);
