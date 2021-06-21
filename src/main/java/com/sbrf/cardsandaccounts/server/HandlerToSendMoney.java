@@ -25,7 +25,6 @@ public class HandlerToSendMoney implements HttpHandler {
         }
         String text = String.valueOf(buf);
         JacksonObjectMapperP2P jacksonObjectMapperP2P = new JacksonObjectMapperP2P();
-       // System.out.println(text);
 
         try {
             jacksonObjectMapperP2P.jsonMapper(text);

@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 public class H2InsertNewCard {
 
     private static final String INSERT_CARDS_SQL = "INSERT INTO CARDS" +
@@ -35,7 +34,6 @@ public class H2InsertNewCard {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw e;
-            //H2JDBCUtils.printSQLException(e);
         }
     }
 }

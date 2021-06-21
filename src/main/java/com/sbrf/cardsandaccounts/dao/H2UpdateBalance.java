@@ -21,7 +21,6 @@ public class H2UpdateBalance {
             preparedStatement.setBigDecimal(1, addAccount);
             preparedStatement.setBigDecimal(2, addFunds);
             preparedStatement.setBigDecimal(3, addAccount);
-            //preparedStatement.executeUpdate();
 
             int i = preparedStatement.executeUpdate();
             if (i == 0) {
@@ -29,7 +28,6 @@ public class H2UpdateBalance {
             }
         } catch (SQLException e) {
             throw e;
-            //H2JDBCUtils.printSQLException(e);
         }
     }
 }

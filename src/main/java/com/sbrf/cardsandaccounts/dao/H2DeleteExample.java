@@ -7,11 +7,6 @@ import java.sql.Statement;
 public class H2DeleteExample {
     private static final String deleteTableSQL = "delete from AccountBalance where id = 1";
 
-    /*public static void main(String[] argv) throws SQLException {
-        H2DeleteExample deleteExample = new H2DeleteExample();
-        deleteExample.deleteRecord();
-    }*/
-
     public void deleteRecord() throws SQLException {
 
         System.out.println(deleteTableSQL);

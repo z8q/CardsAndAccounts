@@ -16,7 +16,5 @@ public class JacksonObjectMapperUpdateBalance {
 
         H2UpdateBalance createTableExample = new H2UpdateBalance();
         createTableExample.updateBalance(cardBalance.getAccountNumber(), cardBalance.getBalance());
-
-
     }
 }

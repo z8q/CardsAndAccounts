@@ -15,93 +15,33 @@ public class H2UpdateP2P {
             "FROM ACCOUNTBALANCE WHERE ACCOUNTNUMBER = ?) + ?\n" +
             "WHERE ACCOUNTID=(SELECT ACCOUNTID FROM ACCOUNTBALANCE WHERE ACCOUNTNUMBER = ? );";
 
-    public void sendP2P(BigDecimal ACCOUNTNUMBER, BigDecimal ACCOUNTNUMBER2, BigDecimal balance) throws SQLException {
+    public void sendP2P(BigDecimal ACCOUNTNUMBER, BigDecimal balance, BigDecimal ACCOUNTNUMBER2) throws SQLException {
         System.out.println(UPDATE_USERWITHDRAW_SQL);
         System.out.println(UPDATE_USERADDSUM_SQL);
         System.out.println(ACCOUNTNUMBER);
         System.out.println(ACCOUNTNUMBER2);
         System.out.println(balance);
 
+        Connection con = H2JDBCUtils.getConnection();
 
-        /*try (Connection connection = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERWITHDRAW_SQL)){
-            preparedStatement.setBigDecimal(1, ACCOUNTNUMBER);
-            preparedStatement.setBigDecimal(2, balance);
-            preparedStatement.setBigDecimal(3, ACCOUNTNUMBER);
-            preparedStatement.executeUpdate();
+        try (
+        PreparedStatement userWithdraw = con.prepareStatement(UPDATE_USERWITHDRAW_SQL);
+        PreparedStatement userAddSum = con.prepareStatement(UPDATE_USERADDSUM_SQL)) {
+            con.setAutoCommit(false);
 
-            //int i = preparedStatement.executeUpdate();
-            //if (i == 0) {
-            //    throw new SQLException();
-            //}
+            userWithdraw.setBigDecimal(1, ACCOUNTNUMBER);
+            userWithdraw.setBigDecimal(2, balance);
+            userWithdraw.setBigDecimal(3, ACCOUNTNUMBER);
+            userWithdraw.executeUpdate();
+
+            userAddSum.setBigDecimal(1, ACCOUNTNUMBER2);
+            userAddSum.setBigDecimal(2, balance);
+            userAddSum.setBigDecimal(3, ACCOUNTNUMBER2);
+            userAddSum.executeUpdate();
+
+            con.commit();
         } catch (SQLException e) {
             throw e;
         }
-        try (Connection connection2 = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement2 = connection2.prepareStatement(UPDATE_USERADDSUM_SQL)){
-            preparedStatement2.setBigDecimal(4, ACCOUNTNUMBER2);
-            preparedStatement2.setBigDecimal(5, balance);
-            preparedStatement2.setBigDecimal(6, ACCOUNTNUMBER2);
-            preparedStatement2.executeUpdate();
-            // int z = preparedStatement2.executeUpdate();
-            //if (z == 0) {
-            //    throw new SQLException();
-            //}
-        } catch (SQLException e) {
-            throw e;
-        }*/
-
-        try (Connection connection = H2JDBCUtils.getConnection();
-             Connection connection2 = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERWITHDRAW_SQL);
-             PreparedStatement preparedStatement2 = connection2.prepareStatement(UPDATE_USERADDSUM_SQL)){
-            preparedStatement.setBigDecimal(1, ACCOUNTNUMBER);
-            preparedStatement.setBigDecimal(2, balance);
-            preparedStatement.setBigDecimal(3, ACCOUNTNUMBER);
-            //preparedStatement.executeUpdate();
-            preparedStatement2.setBigDecimal(1, ACCOUNTNUMBER2);
-            preparedStatement2.setBigDecimal(2, balance);
-            preparedStatement2.setBigDecimal(3, ACCOUNTNUMBER2);
-            /*preparedStatement.executeUpdate();
-            preparedStatement2.executeUpdate();*/
-
-            int i = preparedStatement.executeUpdate();
-            int z = preparedStatement2.executeUpdate();
-            if (i == 0 || z == 0) {
-                throw new SQLException();
-            }
-        } catch (SQLException e) {
-            throw e;
-            //H2JDBCUtils.printSQLException(e);
-        }
-
-
-
-
-
-        /*try {
-            Connection connection = H2JDBCUtils.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERWITHDRAW_SQL);
-            PreparedStatement preparedStatement2 = connection.prepareStatement(UPDATE_USERADDSUM_SQL);
-            preparedStatement.setBigDecimal(1, ACCOUNTNUMBER);
-            preparedStatement.setBigDecimal(2, balance);
-            preparedStatement.setBigDecimal(3, ACCOUNTNUMBER);
-            //preparedStatement.executeUpdate();
-            preparedStatement2.setBigDecimal(1, ACCOUNTNUMBER2);
-            preparedStatement2.setBigDecimal(2, balance);
-            preparedStatement2.setBigDecimal(3, ACCOUNTNUMBER2);
-            preparedStatement.executeUpdate();
-            preparedStatement2.executeUpdate();
-
-            int i = preparedStatement.executeUpdate();
-            int z = preparedStatement2.executeUpdate();
-            if (i == 0 || z == 0) {
-                throw new SQLException();
-            }
-        } catch (SQLException e) {
-            throw e;
-            //H2JDBCUtils.printSQLException(e);
-        }*/
-
     }
 }

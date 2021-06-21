@@ -67,29 +67,5 @@ public class H2CreateTablesInsertExamples {
 
             H2JDBCUtils.printSQLException((SQLException) e);
         }
-
-        /*try (Connection connection = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement1 = connection.prepareStatement(createTableSQL);
-             PreparedStatement preparedStatement2 = connection.prepareStatement(insertTableSQL);
-             PreparedStatement preparedStatement3 = connection.prepareStatement(createTableSQL2)) {
-            preparedStatement1.execute();
-            preparedStatement1.close();
-            preparedStatement2.execute();
-            preparedStatement2.close();
-            preparedStatement3.execute();
-        } catch (SQLException e) {
-
-            H2JDBCUtils.printSQLException((SQLException) e);
-        }*/
-
-        /*try (Connection connection = H2JDBCUtils.getConnection();
-             Statement statement = connection.createStatement();) {
-            statement.execute(createTableSQL);
-            statement.execute(insertTableSQL);
-            statement.execute(createTableSQL2);
-        } catch (SQLException e) {
-
-            H2JDBCUtils.printSQLException((SQLException) e);
-        }*/
     }
 }

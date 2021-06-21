@@ -37,8 +37,5 @@ public class H2JDBCUtils {
         }
     }
 }
-
-
-
 //jdbc:h2:mem:bank;DB_ClOSE_DELAY=-1
 //jdbc:h2:~/bank

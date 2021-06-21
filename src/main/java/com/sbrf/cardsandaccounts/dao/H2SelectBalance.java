@@ -26,12 +26,11 @@ public class H2SelectBalance {
 
             if (!rs.next()) return "Wrong account number!";
 
-            //while (rs.next()) {
                 BigDecimal rsAccountNumber = rs.getBigDecimal("accountNumber");
                 BigDecimal rsBalance = rs.getBigDecimal("balance");
                 CardBalance cardBalance = new CardBalance(rsAccountNumber, rsBalance);
                 balance.add(cardBalance);
-            //}
+
         } catch (SQLException e) {
             H2JDBCUtils.printSQLException((SQLException) e);
         }

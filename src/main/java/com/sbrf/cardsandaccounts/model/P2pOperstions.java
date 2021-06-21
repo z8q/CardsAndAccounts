@@ -4,19 +4,19 @@ import java.math.BigDecimal;
 
 public class P2pOperstions {
 
-    private BigDecimal ACCOUNTNUMBER;
-    private BigDecimal ACCOUNTNUMBER2;
-    private BigDecimal BALANCE;
+    private BigDecimal accountNumber;
+    private BigDecimal balance;
+    private BigDecimal accountNumber2;
 
-    public BigDecimal getACCOUNTNUMBER() {
-        return ACCOUNTNUMBER;
+    public BigDecimal getAccountNumber() {
+        return accountNumber;
     }
 
-    public BigDecimal getACCOUNTNUMBER2() {
-        return ACCOUNTNUMBER2;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public BigDecimal getBALANCE() {
-        return BALANCE;
+    public BigDecimal getAccountNumber2() {
+        return accountNumber2;
     }
 }
