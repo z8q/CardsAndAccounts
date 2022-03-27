@@ -18,8 +18,8 @@ public class H2SelectCardList {
         List<ListOfCards> listOfCardsList = new ArrayList<>();
 
         try (Connection connection = H2JDBCUtils.getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement(QUERY)) {
+
                     ResultSet rs = preparedStatement.executeQuery();
                     while (rs.next()) {
                         int rsCardId = rs.getInt("CardId");
@@ -32,8 +32,7 @@ public class H2SelectCardList {
                 H2JDBCUtils.printSQLException(e);
         }
         Gson gson = new Gson();
-        String gsonFile = gson.toJson(listOfCardsList);
-        return(gsonFile);
+        return gson.toJson(listOfCardsList);
     }
 
 }

@@ -21,7 +21,6 @@ public class CheckCardNumber {
         List<UniqueCardNumber> listOfCards = new ArrayList<>();
 
         try (Connection connection = H2JDBCUtils.getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CARDNUMBER_SQL)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

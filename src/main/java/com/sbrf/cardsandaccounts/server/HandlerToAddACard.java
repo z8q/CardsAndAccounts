@@ -25,7 +25,7 @@ public class HandlerToAddACard implements HttpHandler {
         H2SelectCardList h2SelectCardList = new H2SelectCardList();
 
         try {
-            jsonMapper(text);
+            createCard(text);
             String response = "Card is added.\n List of cards: " + h2SelectCardList.selectListOfCards() + "\n";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -43,11 +43,11 @@ public class HandlerToAddACard implements HttpHandler {
         isr.close();
     }
 
-    private void jsonMapper(String json) throws IOException, SQLException {
+    private void createCard(String json) throws IOException, SQLException {
         ObjectMapper mapper = new ObjectMapper();
         CreateNewCard newCard = mapper.readValue(json, CreateNewCard.class);
 
-        H2InsertNewCard createTableExample = new H2InsertNewCard();
-        createTableExample.insertRecord(newCard.getAccountNumber());
+        H2InsertNewCard h2InsertNewCard = new H2InsertNewCard();
+        h2InsertNewCard.insertRecord(newCard.getAccountNumber());
     }
 }

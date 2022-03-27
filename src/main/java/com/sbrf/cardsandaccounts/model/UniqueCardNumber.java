@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class UniqueCardNumber {
 
-    private BigDecimal cardNumber;
+    private final BigDecimal cardNumber;
 
     public UniqueCardNumber(BigDecimal cardNumber) {
         this.cardNumber = cardNumber;

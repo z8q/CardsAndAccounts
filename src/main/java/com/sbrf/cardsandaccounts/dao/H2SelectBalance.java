@@ -18,24 +18,21 @@ public class H2SelectBalance {
 
         List<CardBalance> balance = new ArrayList<>();
         try (Connection connection = H2JDBCUtils.getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement(QUERY)) {
+
             preparedStatement.setBigDecimal(1, new BigDecimal(String.valueOf(accArg)));
-
             ResultSet rs = preparedStatement.executeQuery();
-
-            if (!rs.next()) return "Wrong account number!";
-
+            if (!rs.next()) {
+                return "Wrong account number!";
+            }
                 BigDecimal rsAccountNumber = rs.getBigDecimal("accountNumber");
                 BigDecimal rsBalance = rs.getBigDecimal("balance");
                 CardBalance cardBalance = new CardBalance(rsAccountNumber, rsBalance);
                 balance.add(cardBalance);
-
         } catch (SQLException e) {
             H2JDBCUtils.printSQLException(e);
         }
         Gson gson = new Gson();
-        String gsonFile = gson.toJson(balance);
-        return(gsonFile);
+        return gson.toJson(balance);
     }
 }

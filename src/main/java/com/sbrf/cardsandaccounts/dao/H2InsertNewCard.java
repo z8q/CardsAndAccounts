@@ -30,7 +30,6 @@ public class H2InsertNewCard {
             preparedStatement.setBigDecimal(1, x);
             preparedStatement.setBigDecimal(2, bigDecimal);
             System.out.println(preparedStatement);
-
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw e;

@@ -29,7 +29,7 @@ public class HandlerToUpdateAccount implements HttpHandler {
         String text = String.valueOf(buf);
 
         try {
-            jsonMapper(text);
+            deposit(text);
             String response = "Sum is added to account";
             exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
@@ -47,8 +47,7 @@ public class HandlerToUpdateAccount implements HttpHandler {
         isr.close();
     }
 
-    public void jsonMapper(String json) throws IOException, SQLException {
-
+    public void deposit(String json) throws IOException, SQLException {
         ObjectMapper mapper = new ObjectMapper();
         CardBalance cardBalance = mapper.readValue(json, CardBalance.class);
 

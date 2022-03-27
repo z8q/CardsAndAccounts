@@ -29,7 +29,7 @@ public class HandlerToSendMoney implements HttpHandler {
         String text = String.valueOf(buf);
 
         try {
-            jsonMapper(text);
+            sendMoney(text);
             String response = "Operation completed";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -47,8 +47,7 @@ public class HandlerToSendMoney implements HttpHandler {
         isr.close();
     }
 
-    private void jsonMapper(String json) throws IOException, SQLException {
-
+    private void sendMoney(String json) throws IOException, SQLException {
         ObjectMapper mapper = new ObjectMapper();
         P2pOperations p2POperations = mapper.readValue(json, P2pOperations.class);
 
