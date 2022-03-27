@@ -12,11 +12,7 @@ import java.sql.Statement;
 
 public class H2CreateTablesInsertExamples {
 
-    private String createTableSQL;
-    private String insertTableSQL;
-    private String createTableSQL2;
-
-    public void createTable() throws SQLException, IOException {
+    public void createTable() throws IOException {
 
         String accBalPath="src/main/resources/AccountBalance.sql";
         String cardsPath="src/main/resources/Cards.sql";
@@ -27,45 +23,29 @@ public class H2CreateTablesInsertExamples {
         Path pathToInsertIntoAccPath = Paths.get(insertIntoAccPath);
 
         ReadFiles readFiles = new ReadFiles();
-        String createRequest = readFiles.readFile(String.valueOf(pathToAccBalPath.toAbsolutePath()), StandardCharsets.UTF_8);
-        createTableSQL = createRequest;
+        String createTableSQL = readFiles.readFile(String.valueOf(pathToAccBalPath.toAbsolutePath()), StandardCharsets.UTF_8);
+        String insertTableSQL = readFiles.readFile(String.valueOf(pathToInsertIntoAccPath.toAbsolutePath()), StandardCharsets.UTF_8);
+        String createTableSQL2 = readFiles.readFile(String.valueOf(pathToCardsPath.toAbsolutePath()), StandardCharsets.UTF_8);
 
-        String createRequest3 = readFiles.readFile(String.valueOf(pathToInsertIntoAccPath.toAbsolutePath()), StandardCharsets.UTF_8);
-        insertTableSQL = createRequest3;
-
-        String createRequest2 = readFiles.readFile(String.valueOf(pathToCardsPath.toAbsolutePath()), StandardCharsets.UTF_8);
-        createTableSQL2 = createRequest2;
-
-        String tcMessage = "The table is created";
-        String aiMessage = "List of accounts is inserted";
-
-        System.out.println(tcMessage);
-        System.out.println(aiMessage + " \n ");
+        System.out.println("The table is created");
+        System.out.println("List of accounts is inserted" + " \n ");
         System.out.println(createTableSQL + " \n ");
         System.out.println(insertTableSQL + " \n ");
         System.out.println(createTableSQL2 + " \n ");
 
         try (Connection connection1 = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement1 = connection1.prepareStatement(createTableSQL);) {
+             PreparedStatement preparedStatement1 = connection1.prepareStatement(createTableSQL);
+             PreparedStatement preparedStatement3 = connection1.prepareStatement(createTableSQL2);) {
             preparedStatement1.execute();
+            preparedStatement3.execute();
         } catch (SQLException e) {
-
-            H2JDBCUtils.printSQLException((SQLException) e);
+            H2JDBCUtils.printSQLException(e);
         }
         try (Connection connection2 = H2JDBCUtils.getConnection();
              PreparedStatement preparedStatement2 = connection2.prepareStatement(insertTableSQL);) {
             preparedStatement2.execute();
-
         } catch (SQLException e) {
-
-            H2JDBCUtils.printSQLException((SQLException) e);
-        }
-        try (Connection connection3 = H2JDBCUtils.getConnection();
-             PreparedStatement preparedStatement3 = connection3.prepareStatement(createTableSQL2);) {
-            preparedStatement3.execute();
-        } catch (SQLException e) {
-
-            H2JDBCUtils.printSQLException((SQLException) e);
+            H2JDBCUtils.printSQLException(e);
         }
     }
 }

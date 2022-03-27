@@ -10,12 +10,8 @@ public class HandlerForCardList implements HttpHandler {
 
     @Override
     public void handle(HttpExchange t) throws IOException {
-
         H2SelectCardList h2SelectCardList = new H2SelectCardList();
-        String text = h2SelectCardList.selectListOfCards();
-
-        String response = text;
-
+        String response = h2SelectCardList.selectListOfCards();
         t.getResponseHeaders().add("Content-Type", "text/plain; charset=" + StandardCharsets.UTF_8.name());
         t.sendResponseHeaders(200, response.length());
         System.out.println(t.getResponseHeaders().entrySet());

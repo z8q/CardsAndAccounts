@@ -31,8 +31,8 @@ public class CheckCardNumber {
             }
             int counter = 0;
 
-            for (int i = 0; i < listOfCards.size(); i++) {
-                if (new BigDecimal(String.valueOf(listOfCards.get(i))).equals(numberToCheck)) {
+            for (UniqueCardNumber listOfCard : listOfCards) {
+                if (new BigDecimal(String.valueOf(listOfCard)).equals(numberToCheck)) {
                     counter++;
                 }
             }

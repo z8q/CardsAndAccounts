@@ -32,7 +32,7 @@ public class H2SelectBalance {
                 balance.add(cardBalance);
 
         } catch (SQLException e) {
-            H2JDBCUtils.printSQLException((SQLException) e);
+            H2JDBCUtils.printSQLException(e);
         }
         Gson gson = new Gson();
         String gsonFile = gson.toJson(balance);

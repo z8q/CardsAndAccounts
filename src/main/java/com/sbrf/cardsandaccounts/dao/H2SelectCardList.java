@@ -29,7 +29,7 @@ public class H2SelectCardList {
                         listOfCardsList.add(listOfCards);
                     }
             } catch (SQLException e) {
-                H2JDBCUtils.printSQLException((SQLException) e);
+                H2JDBCUtils.printSQLException(e);
         }
         Gson gson = new Gson();
         String gsonFile = gson.toJson(listOfCardsList);

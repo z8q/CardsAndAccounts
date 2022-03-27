@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class H2JDBCUtils {
 
     public static final String jdbcURL = "jdbc:h2:mem:bank;DB_ClOSE_DELAY=-1";
-    public static final String jdbcUsername = "sa";
+    public static final String jdbcUsername = "sm";
     public static final String jdbcPassword = "";
 
     public static Connection getConnection() {
@@ -15,7 +15,6 @@ public class H2JDBCUtils {
         try {
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return connection;
