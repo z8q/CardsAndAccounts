@@ -2,7 +2,7 @@ package com.sbrf.cardsandaccounts.model;
 
 import java.math.BigDecimal;
 
-public class P2pOperstions {
+public class P2pOperations {
 
     private BigDecimal accountNumber;
     private BigDecimal balance;

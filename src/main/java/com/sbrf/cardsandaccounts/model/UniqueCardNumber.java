@@ -6,8 +6,6 @@ public class UniqueCardNumber {
 
     private BigDecimal cardNumber;
 
-    public UniqueCardNumber() {}
-
     public UniqueCardNumber(BigDecimal cardNumber) {
         this.cardNumber = cardNumber;
     }

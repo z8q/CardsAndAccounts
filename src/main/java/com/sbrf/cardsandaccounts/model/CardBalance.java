@@ -7,7 +7,8 @@ public class CardBalance {
     private BigDecimal accountNumber;
     private BigDecimal balance;
 
-    public CardBalance() {}
+    public CardBalance() {
+    }
 
     public CardBalance(BigDecimal accountNumber, BigDecimal balance) {
         this.accountNumber = accountNumber;

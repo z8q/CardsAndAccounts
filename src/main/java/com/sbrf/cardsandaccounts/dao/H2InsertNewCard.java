@@ -32,7 +32,7 @@ public class H2InsertNewCard {
             System.out.println(preparedStatement);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw e;
         }
     }

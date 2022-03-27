@@ -18,9 +18,7 @@ public class HandlerToCheckBalance implements HttpHandler {
         BigDecimal inputAccount = new BigDecimal(String.valueOf(params[1]));
         H2SelectBalance h2SelectBalance = new H2SelectBalance();
 
-        String text = h2SelectBalance.selectBalance(inputAccount);
-
-        String response = text;
+        String response = h2SelectBalance.selectBalance(inputAccount);
 
         exchange.getResponseHeaders().add("Content-Type", "text/plain; charset=" + StandardCharsets.UTF_8.name());
         exchange.sendResponseHeaders(200, response.length());

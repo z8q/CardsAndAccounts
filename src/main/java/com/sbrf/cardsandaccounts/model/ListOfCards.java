@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 
 public class ListOfCards {
 
-    private int cardId;
-    private BigDecimal cardNumber;
+    private final int cardId;
+    private final BigDecimal cardNumber;
     private int AccountId;
-
-    public ListOfCards() {}
 
     public ListOfCards(int cardId, BigDecimal cardNumber, int AccountId) {
         this.cardId = cardId;
